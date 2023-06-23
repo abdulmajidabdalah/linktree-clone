@@ -30,7 +30,7 @@ const styles = {
   body: "text-lg font-semibold flex gap-4 items-center",
 };
 
-const shareUrl = "https://tailwindcss.com/docs/flex-shrink";
+const shareUrl = "https://linktree-clone-adol.vercel.app/";
 
 export default function Home() {
   const [copy, setCopy] = useState(false);
@@ -187,7 +187,7 @@ export default function Home() {
             <div onClick={onCopy} className="flex justify-between items-center px-3 rounded-md mt-3 py-4 border border-slate-400 cursor-pointer">
               <div className="flex items-center gap-3 text-xl font-semibold">
                 <FaLink />
-                <p className="text-base">Link/Ural</p>
+                <p className="text-base">https://linktree-clone-adol.vercel.app/</p>
               </div>
               {copy ? <p className="text-success">Copied!</p> : <p>Copy</p>}
             </div>
