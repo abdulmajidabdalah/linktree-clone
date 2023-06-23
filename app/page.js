@@ -1,113 +1,210 @@
-import Image from 'next/image'
+"use client";
+import {
+  BsThreeDots,
+  BsFillSuitHeartFill,
+  BsLinkedin,
+  BsTelegram,
+} from "react-icons/bs";
+import { GoShare } from "react-icons/go";
+import { GrClose } from "react-icons/gr";
+import { AiOutlineRight } from "react-icons/ai";
+import { ImFacebook2 } from "react-icons/im";
+import { FaLink, FaTwitterSquare, FaWhatsappSquare } from "react-icons/fa";
+import { ImMail } from "react-icons/im";
+import Image from "next/image";
+import img from "./assets/31.jpeg";
+import img2 from "./assets/16.jpeg";
+import { data } from "./config/data";
+import {
+  FacebookShareButton,
+  TwitterShareButton,
+  LinkedinShareButton,
+  WhatsappShareButton,
+  TelegramShareButton,
+  EmailShareButton,
+} from "react-share";
+import { useState } from "react";
+
+const styles = {
+  head: "flex justify-between items-center hover:bg-slate-200 duration-200 px-4 py-3 rounded-lg",
+  body: "text-lg font-semibold flex gap-4 items-center",
+};
+
+const shareUrl = "https://tailwindcss.com/docs/flex-shrink";
 
 export default function Home() {
+  const [copy, setCopy] = useState(false);
+  const onCopy = () => {
+    setCopy(true);
+    navigator.clipboard.writeText(shareUrl)
+    setTimeout(() => setCopy(false), 2000);
+  };
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">app/page.js</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <main className="bg-black">
+      <div className="lg:w-[60%] mx-auto lg:p-7 p-3">
+        <div className="flex justify-end items-center">
+          <button
+            onClick={() => window.my_modal_1.showModal()}
+            data-tip="Share"
+            className="bg-white px-3 py-3 text-gray-700 rounded-full flex justify-center items-center tooltip tooltip-right"
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+            <BsThreeDots />
+          </button>
         </div>
+        <div className="flex justify-center items-center">
+          <Image
+            src={img}
+            alt="image"
+            className="object-cover object-center w-[120px] h-[120px] rounded-full"
+          />
+        </div>
+        <p className="text-center my-5 text-2xl font-bold text-white">
+          @abdulmajidabdalah_
+        </p>
+        <div className="grid grid-cols-1 gap-y-3">
+          {data.map((item) => (
+            <div className="bg-[#222222] w-full items-center px-4 py-4 rounded-xl text-white font-semibold text-lg hover:scale-105 duration-200">
+              <a
+                href={item.url}
+                key={item.id}
+                target="_blank"
+                rel="no_referrer"
+              >
+                <p className="text-center">{item.name}</p>
+              </a>
+              <div
+                onClick={() => window.my_modal_1.showModal()}
+                className="float-right hover:bg-[#444] duration-300 px-1 py-1 rounded-full -mt-7 cursor-pointer"
+              >
+                <p>
+                  <GoShare />
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <p className="text-white text-center my-14 flex justify-center items-center gap-2">
+          Made with <BsFillSuitHeartFill /> by Abdul Majid Abdalah
+        </p>
       </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800 hover:dark:bg-opacity-30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+      {/* MODAL */}
+      <dialog id="my_modal_1" className="modal">
+        <form method="dialog" className="modal-box">
+          <div className="flex justify-between items-center">
+            <h1 className="text-lg font-bold lg:ml-24">
+              Share This Linktree Clone
+            </h1>
+            <div className="modal-action mt-0">
+              <button className="">
+                <GrClose />
+              </button>
+            </div>
+          </div>
+          <div className="grid grid-cols-1 gap-2 mt-8">
+            <FacebookShareButton
+              url={shareUrl}
+              quote="Never regret a day in your life. Good days bring you happiness and bad days give you experience"
+              hashtag="#liktree-clone #nextjs #tailwindcss #front-end-developer"
+            >
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-blue-600 text-xl">
+                    <ImFacebook2 />
+                  </div>
+                  <p>Share On Facebook</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </FacebookShareButton>
+            <LinkedinShareButton url={shareUrl}>
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-blue-600 text-xl">
+                    <BsLinkedin />
+                  </div>
+                  <p>Share On LinkedIn</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </LinkedinShareButton>
+            <TwitterShareButton url={shareUrl}>
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-blue-600 text-2xl">
+                    <FaTwitterSquare />
+                  </div>
+                  <p>Share On Twitter</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </TwitterShareButton>
+            <WhatsappShareButton url={shareUrl}>
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-green-500 text-2xl">
+                    <FaWhatsappSquare />
+                  </div>
+                  <p>Share On Whatsapp</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </WhatsappShareButton>
+            <TelegramShareButton url={shareUrl}>
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-blue-600 text-2xl">
+                    <BsTelegram />
+                  </div>
+                  <p>Share On Telegram</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </TelegramShareButton>
+            <EmailShareButton url={shareUrl}>
+              <div className={styles.head}>
+                <div className={styles.body}>
+                  <div className="text-purple-600 text-2xl">
+                    <ImMail />
+                  </div>
+                  <p>Share On Email</p>
+                </div>
+                <div className="text-xl">
+                  <AiOutlineRight />
+                </div>
+              </div>
+            </EmailShareButton>
+          </div>
+            <div onClick={onCopy} className="flex justify-between items-center px-3 rounded-md mt-3 py-4 border border-slate-400 cursor-pointer">
+              <div className="flex items-center gap-3 text-xl font-semibold">
+                <FaLink />
+                <p className="text-base">Link/Ural</p>
+              </div>
+              {copy ? <p className="text-success">Copied!</p> : <p>Copy</p>}
+            </div>
+          <div className="chat chat-start mt-10">
+            <div className="chat-image avatar">
+              <div className="w-10 rounded-full">
+                <Image src={img2} />
+              </div>
+            </div>
+            <div className="chat-bubble">
+              “Success is going from failure to failure without losing your
+              enthusiasm” <br />
+              True or True ?
+            </div>
+          </div>
+        </form>
+      </dialog>
     </main>
-  )
+  );
 }
