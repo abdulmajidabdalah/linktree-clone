@@ -27,7 +27,7 @@ import { useState } from "react";
 
 const styles = {
   head: "flex justify-between items-center hover:bg-slate-200 duration-200 px-4 py-3 rounded-lg",
-  body: "text-lg font-semibold flex gap-4 items-center",
+  body: "lg:text-lg text-sm font-semibold flex gap-4 items-center",
 };
 
 const shareUrl = "https://linktree-clone-adol.vercel.app/";
@@ -95,7 +95,7 @@ export default function Home() {
       </div>
       {/* MODAL */}
       {showModal ? (
-        <div className="bg-white/10 backdrop-brightness-50 lg:h-screen fixed lg:top-0 bottom-0 z-40 overflow-auto flex justify-center items-center px-2 py-5 w-full">
+        <div className="bg-white/10 backdrop-brightness-50 lg:h-screen fixed lg:top-0 bottom-0 overflow-y-auto z-40 flex justify-center items-center px-2 py-1 lg:py-5 w-full">
           <div className="bg-white rounded-lg py-4 px-2">
             <div className="flex justify-between items-center">
               <h1 className="text-lg font-bold lg:ml-52">
@@ -191,7 +191,7 @@ export default function Home() {
             </div>
             <div
               onClick={onCopy}
-              className="flex justify-between items-center lg:px-3 px-2 rounded-md mt-3 py-4 border border-slate-400 cursor-pointer"
+              className="flex justify-between items-center lg:px-3 px-2 rounded-md mt-3 py-1 lg:py-4 border border-slate-400 cursor-pointer"
             >
               <div className="flex items-center gap-3 lg:text-xl font-semibold">
                 <FaLink />
@@ -199,13 +199,13 @@ export default function Home() {
               </div>
               {copy ? <p className="text-success">Copied!</p> : <p>Copy</p>}
             </div>
-            <div className="chat chat-start mt-5 lg:mt-10">
+            <div className="chat chat-start mt-3 lg:mt-10">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
                   <Image src={img2} />
                 </div>
               </div>
-              <div className="chat-bubble">
+              <div className="chat-bubble text-xs">
                 “Success is going from failure to failure without losing your
                 enthusiasm” <br />
                 True or True ?
