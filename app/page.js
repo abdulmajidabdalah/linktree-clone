@@ -95,7 +95,7 @@ export default function Home() {
       </div>
       {/* MODAL */}
       {showModal ? (
-        <div className="bg-white/10 backdrop-brightness-50 h-screen fixed lg:top-0 bottom-0 z-40 overflow-auto flex justify-center items-center px-2 py-5 w-full">
+        <div className="bg-white/10 backdrop-brightness-50 lg:h-screen fixed lg:top-0 bottom-0 z-40 overflow-auto flex justify-center items-center px-2 py-5 w-full">
           <div className="bg-white rounded-lg py-4 px-2">
             <div className="flex justify-between items-center">
               <h1 className="text-lg font-bold lg:ml-52">
@@ -105,7 +105,7 @@ export default function Home() {
                 <GrClose />
               </div>
             </div>
-            <div className="grid grid-cols-1 gap-2 mt-8">
+            <div className="grid grid-cols-1 gap-1 lg:gap-2 mt-3 lg:mt-8">
               <FacebookShareButton
                 url={shareUrl}
                 quote="Never regret a day in your life. Good days bring you happiness and bad days give you experience"
@@ -199,7 +199,7 @@ export default function Home() {
               </div>
               {copy ? <p className="text-success">Copied!</p> : <p>Copy</p>}
             </div>
-            <div className="chat chat-start mt-10">
+            <div className="chat chat-start mt-5 lg:mt-10">
               <div className="chat-image avatar">
                 <div className="w-10 rounded-full">
                   <Image src={img2} />
