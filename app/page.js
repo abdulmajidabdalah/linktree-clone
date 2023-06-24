@@ -95,7 +95,7 @@ export default function Home() {
       </div>
       {/* MODAL */}
       {showModal ? (
-        <div className="bg-white/10 backdrop-brightness-50 h-screen fixed top-0 z-40 overflow-auto flex justify-center items-center w-full">
+        <div className="bg-white/10 backdrop-brightness-50 h-screen fixed lg:top-0 bottom-0 z-40 overflow-auto flex justify-center items-center px-2 py-5 w-full">
           <div className="bg-white rounded-lg py-4 px-2">
             <div className="flex justify-between items-center">
               <h1 className="text-lg font-bold lg:ml-52">
