@@ -34,9 +34,15 @@ const shareUrl = "https://linktree-clone-adol.vercel.app/";
 
 export default function Home() {
   const [copy, setCopy] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+
+  const clickModal = () => {
+    setShowModal(!showModal);
+  };
+
   const onCopy = () => {
     setCopy(true);
-    navigator.clipboard.writeText(shareUrl)
+    navigator.clipboard.writeText(shareUrl);
     setTimeout(() => setCopy(false), 2000);
   };
   return (
@@ -44,9 +50,9 @@ export default function Home() {
       <div className="lg:w-[60%] mx-auto lg:p-7 p-3">
         <div className="flex justify-end items-center">
           <button
-            onClick={() => window.my_modal_1.showModal()}
+            onClick={clickModal}
             data-tip="Share"
-            className="bg-white px-3 py-3 text-gray-700 rounded-full flex justify-center items-center tooltip tooltip-right"
+            className="bg-white px-3 py-3 text-gray-700 rounded-full flex justify-center items-center tooltip lg:tooltip-right tooltip-left"
           >
             <BsThreeDots />
           </button>
@@ -73,7 +79,7 @@ export default function Home() {
                 <p className="text-center">{item.name}</p>
               </a>
               <div
-                onClick={() => window.my_modal_1.showModal()}
+                onClick={clickModal}
                 className="float-right hover:bg-[#444] duration-300 px-1 py-1 rounded-full -mt-7 cursor-pointer"
               >
                 <p>
@@ -88,123 +94,126 @@ export default function Home() {
         </p>
       </div>
       {/* MODAL */}
-      <dialog id="my_modal_1" className="modal">
-        <form method="dialog" className="modal-box">
-          <div className="flex justify-between items-center">
-            <h1 className="text-lg font-bold lg:ml-24">
-              Share This Linktree Clone
-            </h1>
-            <div className="modal-action mt-0">
-              <button className="">
+      {showModal ? (
+        <div className="bg-white/10 backdrop-brightness-50 h-screen fixed top-0 z-40 overflow-auto flex justify-center items-center w-full">
+          <div className="bg-white rounded-lg py-4 px-2">
+            <div className="flex justify-between items-center">
+              <h1 className="text-lg font-bold lg:ml-52">
+                Share This Linktree Clone
+              </h1>
+              <div onClick={clickModal} className="mr-5 cursor-pointer">
                 <GrClose />
-              </button>
+              </div>
             </div>
-          </div>
-          <div className="grid grid-cols-1 gap-2 mt-8">
-            <FacebookShareButton
-              url={shareUrl}
-              quote="Never regret a day in your life. Good days bring you happiness and bad days give you experience"
-              hashtag="#liktree-clone #nextjs #tailwindcss #front-end-developer"
+            <div className="grid grid-cols-1 gap-2 mt-8">
+              <FacebookShareButton
+                url={shareUrl}
+                quote="Never regret a day in your life. Good days bring you happiness and bad days give you experience"
+                hashtag="#liktree-clone #nextjs #tailwindcss #front-end-developer"
+              >
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-blue-600 text-xl">
+                      <ImFacebook2 />
+                    </div>
+                    <p>Share On Facebook</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </FacebookShareButton>
+              <LinkedinShareButton url={shareUrl}>
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-blue-600 text-xl">
+                      <BsLinkedin />
+                    </div>
+                    <p>Share On LinkedIn</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </LinkedinShareButton>
+              <TwitterShareButton url={shareUrl}>
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-blue-600 text-2xl">
+                      <FaTwitterSquare />
+                    </div>
+                    <p>Share On Twitter</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </TwitterShareButton>
+              <WhatsappShareButton url={shareUrl}>
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-green-500 text-2xl">
+                      <FaWhatsappSquare />
+                    </div>
+                    <p>Share On Whatsapp</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </WhatsappShareButton>
+              <TelegramShareButton url={shareUrl}>
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-blue-600 text-2xl">
+                      <BsTelegram />
+                    </div>
+                    <p>Share On Telegram</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </TelegramShareButton>
+              <EmailShareButton url={shareUrl}>
+                <div className={styles.head}>
+                  <div className={styles.body}>
+                    <div className="text-purple-600 text-2xl">
+                      <ImMail />
+                    </div>
+                    <p>Share On Email</p>
+                  </div>
+                  <div className="text-xl">
+                    <AiOutlineRight />
+                  </div>
+                </div>
+              </EmailShareButton>
+            </div>
+            <div
+              onClick={onCopy}
+              className="flex justify-between items-center lg:px-3 px-2 rounded-md mt-3 py-4 border border-slate-400 cursor-pointer"
             >
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-blue-600 text-xl">
-                    <ImFacebook2 />
-                  </div>
-                  <p>Share On Facebook</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </FacebookShareButton>
-            <LinkedinShareButton url={shareUrl}>
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-blue-600 text-xl">
-                    <BsLinkedin />
-                  </div>
-                  <p>Share On LinkedIn</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </LinkedinShareButton>
-            <TwitterShareButton url={shareUrl}>
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-blue-600 text-2xl">
-                    <FaTwitterSquare />
-                  </div>
-                  <p>Share On Twitter</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </TwitterShareButton>
-            <WhatsappShareButton url={shareUrl}>
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-green-500 text-2xl">
-                    <FaWhatsappSquare />
-                  </div>
-                  <p>Share On Whatsapp</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </WhatsappShareButton>
-            <TelegramShareButton url={shareUrl}>
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-blue-600 text-2xl">
-                    <BsTelegram />
-                  </div>
-                  <p>Share On Telegram</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </TelegramShareButton>
-            <EmailShareButton url={shareUrl}>
-              <div className={styles.head}>
-                <div className={styles.body}>
-                  <div className="text-purple-600 text-2xl">
-                    <ImMail />
-                  </div>
-                  <p>Share On Email</p>
-                </div>
-                <div className="text-xl">
-                  <AiOutlineRight />
-                </div>
-              </div>
-            </EmailShareButton>
-          </div>
-            <div onClick={onCopy} className="flex justify-between items-center px-3 rounded-md mt-3 py-4 border border-slate-400 cursor-pointer">
-              <div className="flex items-center gap-3 text-xl font-semibold">
+              <div className="flex items-center gap-3 lg:text-xl font-semibold">
                 <FaLink />
-                <p className="text-base">https://linktree-clone-adol.vercel.app/</p>
+                <p className="lg:text-base text-sm">{shareUrl}</p>
               </div>
               {copy ? <p className="text-success">Copied!</p> : <p>Copy</p>}
             </div>
-          <div className="chat chat-start mt-10">
-            <div className="chat-image avatar">
-              <div className="w-10 rounded-full">
-                <Image src={img2} />
+            <div className="chat chat-start mt-10">
+              <div className="chat-image avatar">
+                <div className="w-10 rounded-full">
+                  <Image src={img2} />
+                </div>
+              </div>
+              <div className="chat-bubble">
+                “Success is going from failure to failure without losing your
+                enthusiasm” <br />
+                True or True ?
               </div>
             </div>
-            <div className="chat-bubble">
-              “Success is going from failure to failure without losing your
-              enthusiasm” <br />
-              True or True ?
-            </div>
           </div>
-        </form>
-      </dialog>
+        </div>
+      ) : undefined}
     </main>
   );
 }
